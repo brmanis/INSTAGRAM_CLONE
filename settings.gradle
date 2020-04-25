@@ -1,0 +1,2 @@
+rootProject.name='INSTAGRAM_CLONE'
+include ':app'

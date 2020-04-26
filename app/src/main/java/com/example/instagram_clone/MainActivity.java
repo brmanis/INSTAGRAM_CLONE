@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText edtName, edtPSpeed,edtPPower,edtKSpeed,edtKPower;
     private TextView txtData;
     private String AllKickBoxers;
+    private Button btnChangeActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnSave = findViewById(R.id.btnSave);
         btnGetAllData=findViewById(R.id.btnGetAllData);
+        btnChangeActivity=findViewById(R.id.btnChangeActivity);
         edtName=findViewById(R.id.edtName);
         edtPSpeed=findViewById(R.id.edtPunchSpeed);
         edtPPower=findViewById(R.id.edtPunchPower);
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 AllKickBoxers = "";
                 ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
+                //The whereGreaterThan() method accept a key/value parameters.
+                //queryAll.whereGreaterThan("punch_power", 2300);
+                //queryAll.whereGreaterThanOrEqualTo("punch_speed",1000);
+                queryAll.setLimit(1);
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
@@ -82,6 +88,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 });
+            }
+        });
+
+        btnChangeActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
